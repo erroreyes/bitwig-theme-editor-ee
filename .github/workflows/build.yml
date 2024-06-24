@@ -2,7 +2,7 @@ name: Build JAR for release
 
 on:
   push:
-    branches: [ main ]
+    branches: [ main, jar_release_gh_action ]
   release:
     types: [ published ]
 
