@@ -1,0 +1,33 @@
+name: Build JAR for release
+
+on:
+  push:
+    branches: [ main ]
+  release:
+    types: [ published ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup JDK
+        uses: actions/setup-java@v4
+        with:
+          java-version: 17
+          cache: 'gradle'
+
+#      - name: Setup Gradle
+#        uses: gradle/gradle-build-action@v3
+
+      - name: Gradle build
+        run: ./gradlew build --no-daemon
+
+      - name: Upload JAR as a release
+        if: github.event.name == 'release'
+        uses: actions/upload-artifact@v1
+        with:
+          name: bitwig-theme-editor-jar
+          path: build/libs/*.jar
