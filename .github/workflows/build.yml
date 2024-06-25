@@ -20,11 +20,11 @@ jobs:
           java-version: 17
           cache: 'gradle'
 
-#      - name: Setup Gradle
-#        uses: gradle/gradle-build-action@v3
-
       - name: Gradle build
         run: ./gradlew build --no-daemon
+
+      - name: Check if JAR exists
+        run: ls -l build/libs/
 
       - name: Upload JAR as a release
         if: github.event.name == 'release'
