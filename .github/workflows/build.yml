@@ -27,7 +27,7 @@ jobs:
         run: ls -l build/libs/
 
       - name: Upload JAR as a release
-        if: github.event.name == 'release'
+#        if: github.event.name == 'release'
         uses: actions/upload-artifact@v1
         with:
           name: bitwig-theme-editor-jar
