@@ -26,6 +26,9 @@ jobs:
       - name: Check if JAR exists
         run: ls -l build/libs/
 
+      - name: Check for VERSION env
+        run: echo $VERSION
+
       - name: Upload JAR release asset
         uses: softprops/action-gh-release@v2
 #        if: startsWith(github.ref, 'refs/heads/main')
