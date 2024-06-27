@@ -17,6 +17,12 @@ dependencies {
     implementation("org.ow2.asm:asm-tree:9.7")
 }
 
+tasks.register("setVersionEnvVar") {
+    doLast {
+        System.getProperties().setProperty("VERSION", version.toString())
+    }
+}
+
 tasks.test {
     useJUnitPlatform()
 }
@@ -30,5 +36,9 @@ tasks {
         }
 
         from(configurations.runtimeClasspath.get().map { if (it.isDirectory) it else zipTree(it) })
+    }
+
+    build {
+        dependsOn("setVersionEnvVar")
     }
 }
