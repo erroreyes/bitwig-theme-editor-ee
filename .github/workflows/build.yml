@@ -26,13 +26,6 @@ jobs:
       - name: Check if JAR exists
         run: ls -l build/libs/
 
-#      - name: Upload JAR
-#        if: github.event.name == 'release'
-#        uses: actions/upload-artifact@v4
-#        with:
-#          name: bitwig-theme-editor
-#          path: build/libs/*.jar
-
       - name: Upload JAR release asset
         uses: softprops/action-gh-release@v2
 #        if: startsWith(github.ref, 'refs/heads/main')
